@@ -4,7 +4,6 @@ class UsuariosController {
 
   static listarUsuarios = (req, res) => {
     usuarios.find()
-      .populate('tag')
       .exec((err, usuarios) => {
         res.status(200).json(usuarios)
       })
@@ -14,7 +13,6 @@ class UsuariosController {
     const {id} = req.params
 
     usuarios.findById(id)
-         .populate('tag','valor')  
          .exec((error, usuario) => {
               if(!error) {
                 res.status(200).send(usuario)
@@ -31,7 +29,7 @@ class UsuariosController {
       if(!error){
         res.status(201).send(usuario.toJSON())
       }else{
-        res.status(500).send({message:`${error.message} - Erro no cadastro do link`})
+        res.status(500).send({message:`${error.message} - Erro no cadastro do Usuario`})
       }
     })
   }
